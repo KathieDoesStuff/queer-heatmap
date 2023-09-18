@@ -27,7 +27,7 @@ def request_page(page: int):
         response = make_request(page)
 
         if response.status_code != 200:
-            raise Exception
+            raise Exception("Non 200 http status code returned.")
 
         data = msgpack.unpackb(response.content, strict_map_key=False)
 
@@ -40,7 +40,8 @@ def request_page(page: int):
             ))
 
         finished.append(page)
-    except:
+    except Exception as e:
+        print(f"request {page} failed: {e}")
         errored.append(page)
 
 
@@ -60,5 +61,5 @@ def get_moments() -> list[Moment]:
         if ended != threads_ended:
             print(f"{threads_ended}/{pages}")
             threads_ended = ended
-    print("done")
+    print(f"done, {len(errored)}/{pages} requests failed")
     return moments

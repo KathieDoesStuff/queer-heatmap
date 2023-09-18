@@ -1,5 +1,3 @@
-import re
-
 import xmltodict
 from unidecode import unidecode
 
