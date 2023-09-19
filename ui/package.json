@@ -2,10 +2,10 @@
   "name": "ui",
   "version": "1.0.0",
   "scripts": {
-    "start": "vite",
+    "start": "vite --port 3002 --host 0.0.0.0",
     "build": "vite build",
-    "serve": "vite preview",
-    "update-data": "python3 ../main.py"
+    "serve": "vite preview --port 3002 --host 0.0.0.0",
+    "update-data": "cd .. && python3 main.py"
   },
   "devDependencies": {
     "vite": "^4.0.4"
