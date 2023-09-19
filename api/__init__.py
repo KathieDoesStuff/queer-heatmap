@@ -25,7 +25,7 @@ def request_page(page: int):
     if response.status_code not in [200, 304]:
         raise Exception("Non 200 / 304 http status code returned.")
 
-    data = msgpack.unpackb(response.content)
+    data = msgpack.unpackb(response.content, raw=False)
 
     for moment in data["moment_list"]:
         moments.append(Moment(
@@ -40,7 +40,7 @@ def request_page(page: int):
 
 def get_pages():
     response = make_request(1)
-    data = msgpack.unpackb(response.content)
+    data = msgpack.unpackb(response.content, raw=False)
     return data["pages"]
 
 
