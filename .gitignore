@@ -1,3 +1,5 @@
 ui/node_modules
 ui/.vite
 ui/dist
+__pycahce__
+.idea
