@@ -112,8 +112,9 @@ map.on('pointermove', function (evt) {
 });
 
 map.on('postrender', function (evt) {
-    if (map.getView().getZoom() <= pinLayerMinZoom) {
+    if (map.getView().getZoom() < pinLayerMinZoom) {
         tooltip.hide()
+        currentFeature = undefined;
         return
     }
 
@@ -122,10 +123,5 @@ map.on('postrender', function (evt) {
 
 map.on('click', function (evt) {
     displayFeatureInfo(evt.pixel, evt.originalEvent.target);
-});
-
-map.getTargetElement().addEventListener('pointerleave', function () {
-    tooltip.hide();
-    currentFeature = undefined;
 });
 
